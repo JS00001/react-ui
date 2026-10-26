@@ -24,7 +24,6 @@ export default function Modal({ children, className, style, ...props }: ModalPro
     inset: 0,
     zIndex: 1000,
     display: "flex",
-    alignItems: "center",
     justifyContent: "center",
     backgroundColor: modalBackdropColor,
     pointerEvents: isPresent ? "auto" : "none",

@@ -1,0 +1,18 @@
+.sencorp-modal-backdrop {
+  align-items: center;
+}
+
+@media (width < 48rem) {
+  .sencorp-modal-backdrop {
+    align-items: flex-end;
+  }
+
+  .sencorp-modal-content {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    margin: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+}

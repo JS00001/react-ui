@@ -1,5 +1,3 @@
-import "@/table/styles.css";
-
 export { useTableContext } from "@/table/context/TableContext";
 export { default as Table } from "@/table/components/Table";
 export { default as useTable } from "@/table/hooks/useTable";

@@ -18,7 +18,9 @@
         "default": "./dist/table/index.cjs"
       }
     },
-    "./table/styles.css": "./dist/table/index.css",
+    "./styles.css": "./dist/styles.css",
+    "./table/styles.css": "./dist/table/styles.css",
+    "./modal/styles.css": "./dist/modal/styles.css",
     "./modal": {
       "import": {
         "types": "./dist/modal/index.d.ts",
