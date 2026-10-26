@@ -23,7 +23,22 @@ Follow the setup guide for each component you want to use:
 | Sidebar | `@sencorp/react-ui/sidebar` | [Sidebar](docs/sidebar.md) |
 | Toast | `@sencorp/react-ui/toast` | [Toast](docs/toast.md) |
 
-For tables, import the stylesheet once and wrap your table in `TableThemeProvider`.
+Import the shared stylesheet once at your app root. It includes styles for all components and does not require Tailwind:
+
+```tsx
+import "@sencorp/react-ui/styles.css";
+```
+
+Or import only the component styles you need:
+
+```tsx
+import "@sencorp/react-ui/table/styles.css";
+import "@sencorp/react-ui/modal/styles.css";
+```
+
+Sidebar and toast currently use inline styles and do not need a stylesheet.
+
+For tables, wrap your table in `TableThemeProvider`.
 
 For modals, register your components with `ModalProvider` at the app root and create a typed `useModal` wrapper.
 

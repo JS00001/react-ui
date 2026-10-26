@@ -12,15 +12,17 @@
    npm install @sencorp/react-ui
    ```
 
-2. Import the table stylesheet once in your app:
+2. Import the shared stylesheet once in your app:
 
 ```tsx
-import "@sencorp/react-ui/table/styles.css";
+import "@sencorp/react-ui/styles.css";
 ```
+
+For table styles only, import `@sencorp/react-ui/table/styles.css` instead.
 
 ## Migrating from @sencorp/react-table
 
-Replace `@sencorp/react-table` imports with `@sencorp/react-ui/table` and the stylesheet import with `@sencorp/react-ui/table/styles.css`. Component names and props stay the same.
+Replace `@sencorp/react-table` imports with `@sencorp/react-ui/table` and the stylesheet import with `@sencorp/react-ui/styles.css`. Component names and props stay the same.
 
 ## Create a table
 

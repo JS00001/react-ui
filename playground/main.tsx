@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createRoot } from "react-dom/client";
 
 import "./styles.css";
-import "@sencorp/react-ui/table/styles.css";
+import "@sencorp/react-ui/styles.css";
 import type { TableColumn, TableRowComponentProps } from "@sencorp/react-ui/table";
 
 import { Sidebar, SidebarProvider, useSidebar as useLibrarySidebar } from "@sencorp/react-ui/sidebar";

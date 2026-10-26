@@ -18,6 +18,14 @@
 5. Wrap your app in `<ModalProvider modals={modals}>`.
 6. Call your hook's `open` method with a modal name and its props.
 
+Import the shared stylesheet once at your app root:
+
+```tsx
+import "@sencorp/react-ui/styles.css";
+```
+
+For modal styles only, import `@sencorp/react-ui/modal/styles.css` instead.
+
 ## Complete example
 
 ```tsx
@@ -153,6 +161,8 @@ Add the backdrop class to your app's CSS:
 ## Modal component
 
 Wrap your modal content in `Modal`. Set `className` or `style` to add width, padding, borders, and other panel styles. Add buttons for any actions or closing controls you need.
+
+On `sm` and smaller screens (below 48rem / 768px), modals dock to the bottom, fill the screen width, and have square bottom corners. Larger screens keep the centered layout.
 
 ```tsx
 <Modal
