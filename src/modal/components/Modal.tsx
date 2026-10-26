@@ -54,7 +54,7 @@ export default function Modal({ children, className, style, ...props }: ModalPro
         transition={{ duration: 0.1, ease: "easeOut" }}
         {...props}
         className={styles("sencorp-modal-content", className).className}
-        style={{ backgroundColor: modalBackgroundColor, ...style }}
+        style={{ height: "fit-content", backgroundColor: modalBackgroundColor, ...style }}
       >
         {children}
       </motion.div>
