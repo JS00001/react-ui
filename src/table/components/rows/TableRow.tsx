@@ -1,7 +1,10 @@
+import { Children, cloneElement, isValidElement } from "react";
+
 import type { TableRowData } from "@/table/types";
+import type { TableCellProps } from "@/table/components/cells/TableCell";
 import type { HTMLAttributes, AnchorHTMLAttributes, MouseEvent, MouseEventHandler } from "react";
 
-import { styles } from "@/util";
+import { compute, styles } from "@/util";
 import TableCell from "@/table/components/cells/TableCell";
 import { useTableContext } from "@/table/context/TableContext";
 import { useTableThemeContext } from "@/table/context/TableThemeContext";
@@ -64,8 +67,22 @@ export default function TableRow<DataType extends TableRowData>(props: TableRowP
     table.toggleRowSelection(props.row.id, event.shiftKey);
   };
 
+  // Add the alignment props to each table cell, based on the index of the cell and the alignment of its column
+  const alignedChildren = compute(() => {
+    if (compact) return children;
+
+    return Children.toArray(children).map((child, index) => {
+      if (!isValidElement<TableCellProps>(child)) return child;
+
+      const alignment = table.columns[index + (table.selectionEnabled ? 1 : 0)]?.alignment;
+      if (!alignment) return child;
+
+      return cloneElement(child, { alignment: child.props.alignment ?? alignment });
+    });
+  });
+
   const SelectionCheckbox = (
-    <TableCell onClick={handleRowSelection}>
+    <TableCell alignment="center" onClick={handleRowSelection}>
       <TableSelectionCheckbox value={isSelected} onClick={handleRowSelection} />
     </TableCell>
   );
@@ -76,7 +93,7 @@ export default function TableRow<DataType extends TableRowData>(props: TableRowP
     return (
       <a {...anchorProps} id="table-row" href={href} className={containerStyles.className} style={containerStyles.style}>
         {isSelectable && SelectionCheckbox}
-        {children}
+        {alignedChildren}
       </a>
     );
   }
@@ -87,7 +104,7 @@ export default function TableRow<DataType extends TableRowData>(props: TableRowP
   return (
     <div {...divProps} id="table-row" className={containerStyles.className} style={containerStyles.style} onClick={divOnClick}>
       {isSelectable && SelectionCheckbox}
-      {children}
+      {alignedChildren}
     </div>
   );
 }
