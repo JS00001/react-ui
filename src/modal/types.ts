@@ -3,6 +3,10 @@ import type { ComponentProps, ComponentType, CSSProperties, PropsWithChildren } 
 
 export type ModalComponents = Record<string, ComponentType<any>>;
 
+type ModalsWithoutRequiredProps<Modals extends ModalComponents> = {
+  [Name in keyof Modals]: {} extends ComponentProps<Modals[Name]> ? Name : never;
+}[keyof Modals];
+
 export type OpenModalArgs<Modals extends ModalComponents> = {
   [Name in keyof Modals]: {} extends ComponentProps<Modals[Name]>
     ? [name: Name, props?: ComponentProps<Modals[Name]>]
@@ -38,12 +42,17 @@ export type ModalContextType<Modals extends ModalComponents> = {
   modalBackdropColor: CSSProperties["backgroundColor"];
   /** The class name of the modal backdrop. */
   modalBackdropClassName?: string;
-  /** Opens a modal with the given name and props. */
-  open: (...args: OpenModalArgs<Modals>) => void;
   /** Closes a modal with the given name. */
   close: (name: keyof Modals) => void;
   /** Closes all open modals. */
   closeAll: () => void;
   /** Closes the most recently opened modal. */
   pop: () => void;
+  /** Opens a modal with the given name and props. */
+  open: {
+    /** Opens a modal with the given name and props. */
+    <Name extends keyof Modals>(name: Name, props: ComponentProps<Modals[Name]>): void;
+    /** If a modal doesn't require any props, it can be opened with just the name. */
+    <Name extends ModalsWithoutRequiredProps<Modals>>(name: Name): void;
+  };
 };

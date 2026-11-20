@@ -63,7 +63,7 @@ export default function ModalProvider<Modals extends ModalComponents>({
     modalBackgroundColor,
     modalBackdropColor,
     modalBackdropClassName,
-    open,
+    open: open as ModalContextType<Modals>["open"],
     close,
     closeAll,
     pop,
